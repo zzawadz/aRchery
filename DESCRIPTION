@@ -7,5 +7,5 @@ Depends: R (>= 3.5.1)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, readr, seplyr, plotrix
+Imports: dplyr, readr, seplyr, plotrix, DepthProc, TTR, reshape2
 RoxygenNote: 6.1.0
