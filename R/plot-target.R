@@ -23,7 +23,7 @@ plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40) {
   colors <- target$colors
   rads <- rads / max(rads)
   
-  plot(0,0, xlim = c(-1,1)*1.05, ylim = c(-1,1) * 1.1, axes = FALSE, xlab = "", ylab = "", type = "n")
+  plot(0,0, xlim = c(-1,1)*1.2, ylim = c(-1,1) * 1.2, axes = FALSE, xlab = "", ylab = "", type = "n")
   mapply(
     function(x, col) plotrix::draw.circle(0,0,x, col = col),
     rads, colors
