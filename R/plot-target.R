@@ -25,10 +25,19 @@ scale_rads <- function(target) {
 #' 
 #' plot_target()
 #' 
-plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40) {
+#' # set graphical parameters
+#' plot_target(setPars = TRUE)
+#' 
+plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40, setPars = FALSE) {
   
-  oldPars <- par(no.readonly = TRUE)
-  par(mar = c(1,1,1,1))
+  if(setPars) {
+    oldPars <- par(no.readonly = TRUE, xpd = NA)
+    par(mar = c(1,1,1,1))
+    on.exit({
+      par(oldPars)      
+    })
+  }
+  
   rads <- target$rads
   colors <- target$colors
   rads <- rads / max(rads)
@@ -38,11 +47,33 @@ plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40) {
     function(x, col) plotrix::draw.circle(0, 0, x, col = col),
     rads, colors
   )
-  
-  #par(oldPars)
   return(invisible())
 }
 
+#' Plot target with shots
+#'
+#' @param data archery data
+#'
+#' @export
+#'
+#' @examples
+#' 
+#' data(archeryData)
+#' 
+#' dates <- unique(archeryData$Date)
+#' dates <- dates[c(1, length(dates))]
+#' firstDay <- archeryData[archeryData[["Date"]] == dates[1],]
+#' lastDay <- archeryData[archeryData[["Date"]] == dates[2],]
+#' 
+#' oldPar <- par(
+#'    no.readonly = TRUE, mfrow = c(1,2),
+#'    mar = c(1,1,1,1), xpd = NA)
+#'    
+#' plot_target_with_shots(firstDay)
+#' title(dates[1])
+#' plot_target_with_shots(lastDay)
+#' title(dates[2])
+#' 
 plot_target_with_shots <- function(data) {
   
   target <- get_target_type(data)
