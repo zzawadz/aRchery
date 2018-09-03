@@ -4,6 +4,12 @@ split_by <- function(data, vars) {
   splData
 }
 
+# get names for variables based on the split
+get_name_for_splitted <- function(splData) {
+  apply(splData[, -ncol(splData)], 1, function(x)
+    paste(unlist(x), collapse = " - "))
+}
+
 get_target_type <- function(data) {
   
   target <- unique(data[["Target"]])
