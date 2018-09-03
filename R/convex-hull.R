@@ -23,7 +23,8 @@ add_convex_hull <- function(data, col = "black") {
 #' dates <- unique(archeryData$Date)
 #' dates <- dates[c(1, length(dates))]
 #' dt <- archeryData[archeryData[["Date"]] %in% dates,]
-#' plot_scale_curves(dt, "Date")
+#' plot_scale_curves(dt, "Date") + 
+#'   ggplot2::ggtitle("First day vs last")
 #'   
 plot_scale_curves <- function(data, vars) {
   splData <- split_by(data, vars)
@@ -36,7 +37,7 @@ plot_scale_curves <- function(data, vars) {
   }, dtList, desc, SIMPLIFY = FALSE)
   
   DepthProc::getPlot(Reduce(DepthProc::combineDepthCurves, curves)) + 
-    ggplot2::xlab("Archery scale curve")
+    ggplot2::ggtitle("Archery scale curve")
 }
 
 #' Plot target with convex hull.
