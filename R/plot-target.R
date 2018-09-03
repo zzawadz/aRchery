@@ -42,7 +42,9 @@ plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40, setPars = FALSE) {
   colors <- target$colors
   rads <- rads / max(rads)
   
-  plot(0,0, xlim = c(-1,1)*1, ylim = c(-1,1) * 1, axes = FALSE, xlab = "", ylab = "", type = "n")
+  plot(0,0, xlim = c(-1,1)*1,
+       ylim = c(-1,1) * 1, xlab = "", ylab = "", type = "n",
+       asp = 1, axes = FALSE)
   mapply(
     function(x, col) plotrix::draw.circle(0, 0, x, col = col),
     rads, colors
@@ -73,6 +75,7 @@ plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40, setPars = FALSE) {
 #' title(dates[1])
 #' plot_target_with_shots(lastDay)
 #' title(dates[2])
+#' par(oldPar) 
 #' 
 plot_target_with_shots <- function(data) {
   
