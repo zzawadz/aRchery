@@ -10,7 +10,7 @@
 #' @examples
 #' 
 #' data(archeryData)
-#' dtMatrix12 <- fnc_by_n_shots(data, 12)
+#' dtMatrix12 <- fnc_by_n_shots(archeryData, 12)
 #' 
 fnc_by_n_shots <- function(data, n = 12) {
 
@@ -49,13 +49,13 @@ fnc_data2matrix <- function(dt) {
 #' 
 #' data(archeryData)
 #' 
-#' dtMatrix12 <- fnc_by_n_shots(data, 12)
+#' dtMatrix12 <- fnc_by_n_shots(archeryData, 12)
 #' plot_fnc_boxplot(dtMatrix12)
 #' 
-#' dtMatrix6 <- fnc_by_n_shots(data, 6)
+#' dtMatrix6 <- fnc_by_n_shots(archeryData, 6)
 #' plot_fnc_boxplot(dtMatrix6)
 #' 
-#' dtMatrix3 <- fnc_by_n_shots(data, 3)
+#' dtMatrix3 <- fnc_by_n_shots(archeryData, 3)
 #' plot_fnc_boxplot(dtMatrix3)
 #' 
 plot_fnc_boxplot <- function(dtMatrix, bands = c(0, 0.5, 0.75, 1)) {
