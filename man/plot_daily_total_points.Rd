@@ -13,3 +13,9 @@ plot_daily_total_points(data, addRollMean = TRUE, addRollMax = TRUE,
 \description{
 Plot total scores by day
 }
+\examples{
+
+data(archeryData)
+plot_daily_total_points(archeryData)
+
+}

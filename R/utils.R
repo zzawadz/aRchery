@@ -17,3 +17,43 @@ get_target_type <- function(data) {
   
   ARCHERY_TARGETS[[ARCHERY_MAP[[target]]]]
 }
+
+select_by_n_days <- function(
+  data, n = 7, startDate = c("last", "first"), backwards = TRUE,
+  fromLast = TRUE, includeEdge = TRUE) {
+  
+  days <- select_by_n_days_inner(
+    data[["Date"]], startDate = startDate, 
+    backwards = backwards, n = n,
+    fromLast = fromLast, includeEdge = includeEdge)
+  
+  data[data[["Date"]] %in% days,]
+}
+
+select_by_n_days_inner <- function(
+  datesAll, startDate = c("last", "first"), backwards = TRUE, n = 7,
+  fromLast = TRUE, includeEdge = TRUE) {
+  
+  startDate <- as.character(startDate[1])
+  datesAll  <- unique(datesAll)
+  
+  startDate <- if(startDate == "last") tail(datesAll, 1) else
+  if(startDate == "first") head(datesAll, 1) else
+    as.Date(startDate)
+  
+  diffDays <- as.numeric(diff(range(datesAll)))
+  
+  op <- if(backwards) `-` else `+`
+  
+  times <- ceiling(diffDays / n)
+  
+  finalDays <- op(startDate, (0:times * n))
+  if(backwards) {
+    finalDays <- c(datesAll[1], finalDays)
+  } else {
+    finalDays <- c(datesAll[length(datesAll)], finalDays)
+  }
+  
+  finalDays <- sort(unique(finalDays))
+  finalDays
+}
