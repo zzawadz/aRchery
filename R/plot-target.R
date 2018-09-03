@@ -6,6 +6,14 @@ ARCHERY_TARGETS <- list(
   )
 )
 
+ARCHERY_MAP <- c(
+  "WA 5 Ring (40cm)" = "WA5_RING_40"
+)
+
+scale_rads <- function(target) {
+  x <- target[["rads"]]
+  x / max(x)
+}
 
 #' Plot target
 #'
@@ -27,10 +35,26 @@ plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40) {
   
   plot(0,0, xlim = c(-1,1)*1, ylim = c(-1,1) * 1, axes = FALSE, xlab = "", ylab = "", type = "n")
   mapply(
-    function(x, col) plotrix::draw.circle(0,0,x, col = col),
+    function(x, col) plotrix::draw.circle(0, 0, x, col = col),
     rads, colors
   )
   
-  par(oldPars)
+  #par(oldPars)
   return(invisible())
+}
+
+plot_target_with_shots <- function(data) {
+  
+  target <- get_target_type(data)
+  
+  plot_target(target)
+  
+  x <- data[["x"]]
+  y <- -data[["y"]]
+  rad <- sqrt(x^2 + y^2)
+  
+  scr <- scale_rads(target)
+  colors <- vapply(rad, function(x) sum(x > scr), 0) + 1
+  points(x = x, y = y, pch = 19, col = colors)
+  
 }
