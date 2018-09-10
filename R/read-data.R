@@ -8,8 +8,6 @@
 #' 
 read_archery_files <- function(files) {
   
-  
-  
   allFiles <- suppressWarnings(suppressMessages(lapply(files, function(x) 
     {
       firstLine <- readLines(x, n = 1)
