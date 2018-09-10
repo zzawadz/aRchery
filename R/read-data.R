@@ -7,7 +7,25 @@
 #' @export
 #' 
 read_archery_files <- function(files) {
-  allFiles <- suppressMessages(lapply(files, function(x) readr::read_delim(x, delim = ";")))
+  
+  
+  
+  allFiles <- suppressWarnings(suppressMessages(lapply(files, function(x) 
+    {
+      firstLine <- readLines(x, n = 1)
+      sep <- if(length(strsplit(firstLine, split = ",")[[1]]) > 2) "," else ";"
+      
+      res <- readr::read_delim(x, delim = sep)
+      date <- res[["Date"]]
+      
+      date <- lubridate::ymd(date)
+      if(all(is.na(date))) {
+        date <- lubridate::dmy(res[["Date"]])
+      }
+      res[["Date"]] <- date
+      res
+    }
+  )))
   allData  <- dplyr::bind_rows(allFiles)
   allData  <- seplyr::arrange_se(allData, c("Date", "End"))
   
