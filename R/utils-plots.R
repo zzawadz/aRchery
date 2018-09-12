@@ -55,7 +55,7 @@ plot_daily_total_points <- function(
 #' 
 plot_medians_polygon <- function(data) {
   
-  splData <- aRchery::split_by(data, "Date")
+  splData <- split_by(data, "Date")
   x <- splData[["data"]][[1]]
   
   get_median <- function(x) {
