@@ -1,7 +1,8 @@
 #' Plot total scores by day
 #'
 #' @param data data.frame containing archery data.
-#'
+#' @param ... other parameters passed to \code{geom_line}.
+#' 
 #' @export
 #' 
 #' @examples 
@@ -13,7 +14,8 @@ plot_daily_total_points <- function(
   data,
   addRollMean = TRUE,
   addRollMax = TRUE,
-  n = 7) {
+  n = 7, 
+  ...) {
   
   dt <- seplyr::group_by_se(data, groupingVars = "Date")
   dt <-  seplyr::summarise_se(
@@ -32,7 +34,15 @@ plot_daily_total_points <- function(
       ggplot2::aes_string(
         "Date", "value",
         color = "variable",
-        linetype = "variable")
+        linetype = "variable"),
+      ...
     )
   pl
+}
+
+
+plot_medians_polygon <- function(data) {
+  aRchery:::  
+  data
+  DepthProc::depthMedian()
 }

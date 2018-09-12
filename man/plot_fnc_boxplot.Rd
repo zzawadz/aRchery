@@ -18,13 +18,13 @@ Create an functional boxplot for showing the distribution of results in single t
 
 data(archeryData)
 
-dtMatrix12 <- fnc_by_n_shots(data, 12)
+dtMatrix12 <- fnc_by_n_shots(archeryData, 12)
 plot_fnc_boxplot(dtMatrix12)
 
-dtMatrix6 <- fnc_by_n_shots(data, 6)
+dtMatrix6 <- fnc_by_n_shots(archeryData, 6)
 plot_fnc_boxplot(dtMatrix6)
 
-dtMatrix3 <- fnc_by_n_shots(data, 3)
+dtMatrix3 <- fnc_by_n_shots(archeryData, 3)
 plot_fnc_boxplot(dtMatrix3)
 
 }

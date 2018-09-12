@@ -2,7 +2,7 @@
 % Please edit documentation in R/shot-groups-analysis.R
 \name{fnc_by_n_shots}
 \alias{fnc_by_n_shots}
-\title{Title}
+\title{Summarise data for functional boxplot.}
 \usage{
 fnc_by_n_shots(data, n = 12)
 }
@@ -12,11 +12,11 @@ fnc_by_n_shots(data, n = 12)
 \item{n}{}
 }
 \description{
-Title
+Summarise data for functional boxplot.
 }
 \examples{
 
 data(archeryData)
-dtMatrix12 <- fnc_by_n_shots(data, 12)
+dtMatrix12 <- fnc_by_n_shots(archeryData, 12)
 
 }

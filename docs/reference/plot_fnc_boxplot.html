@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot total scores by day — plot_daily_total_points • aRchery</title>
+<title>Create an functional boxplot for showing the distribution of results in single training session. — plot_fnc_boxplot • aRchery</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Plot total scores by day — plot_daily_total_points" />
+<meta property="og:title" content="Create an functional boxplot for showing the distribution of results in single training session. — plot_fnc_boxplot" />
 
-<meta property="og:description" content="Plot total scores by day" />
+<meta property="og:description" content="Create an functional boxplot for showing the distribution of results in single training session." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,26 +92,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot total scores by day</h1>
+    <h1>Create an functional boxplot for showing the distribution of results in single training session.</h1>
     
-    <div class="hidden name"><code>plot_daily_total_points.Rd</code></div>
+    <div class="hidden name"><code>plot_fnc_boxplot.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot total scores by day</p>
+    <p>Create an functional boxplot for showing the distribution of results in single training session.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_daily_total_points</span>(<span class='no'>data</span>, <span class='kw'>addRollMean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>addRollMax</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>7</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_fnc_boxplot</span>(<span class='no'>dtMatrix</span>, <span class='kw'>bands</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>, <span class='fl'>1</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data.frame containing archery data.</p></td>
+      <th>dtMatrix</th>
+      <td><p>data matrix. It should be a result of the <code>fnc_by_n_shots</code> or similar function.</p></td>
+    </tr>
+    <tr>
+      <th>bands</th>
+      <td><p>a vector with bands.</p></td>
     </tr>
     </table>
     
@@ -119,7 +122,10 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>data</span>(<span class='no'>archeryData</span>)
-<span class='fu'>plot_daily_total_points</span>(<span class='no'>archeryData</span>)</div><div class='img'><img src='plot_daily_total_points-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='no'>dtMatrix12</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fnc_by_n_shots.html'>fnc_by_n_shots</a></span>(<span class='no'>data</span>, <span class='fl'>12</span>)</div><div class='output co'>#&gt; <span class='error'>Error in seplyr::group_by_se(., "Date"): seplyr::group_by_se first argument must be a data.frame or tbl</span></div><div class='input'><span class='fu'>plot_fnc_boxplot</span>(<span class='no'>dtMatrix12</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fncDepth(u, X, method = method, byrow = byrow, ...): object 'dtMatrix12' not found</span></div><div class='input'>
+<span class='no'>dtMatrix6</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fnc_by_n_shots.html'>fnc_by_n_shots</a></span>(<span class='no'>data</span>, <span class='fl'>6</span>)</div><div class='output co'>#&gt; <span class='error'>Error in seplyr::group_by_se(., "Date"): seplyr::group_by_se first argument must be a data.frame or tbl</span></div><div class='input'><span class='fu'>plot_fnc_boxplot</span>(<span class='no'>dtMatrix6</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fncDepth(u, X, method = method, byrow = byrow, ...): object 'dtMatrix6' not found</span></div><div class='input'>
+<span class='no'>dtMatrix3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fnc_by_n_shots.html'>fnc_by_n_shots</a></span>(<span class='no'>data</span>, <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='error'>Error in seplyr::group_by_se(., "Date"): seplyr::group_by_se first argument must be a data.frame or tbl</span></div><div class='input'><span class='fu'>plot_fnc_boxplot</span>(<span class='no'>dtMatrix3</span>)</div><div class='output co'>#&gt; <span class='error'>Error in fncDepth(u, X, method = method, byrow = byrow, ...): object 'dtMatrix3' not found</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
