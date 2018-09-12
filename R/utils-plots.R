@@ -41,6 +41,18 @@ plot_daily_total_points <- function(
 }
 
 
+#' Plot daily medians.
+#'
+#' @param data an archery data set
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' 
+#' data("archeryData")
+#' plot_medians_polygon(archeryData)
+#' 
 plot_medians_polygon <- function(data) {
   
   splData <- aRchery::split_by(data, "Date")
@@ -60,13 +72,17 @@ plot_medians_polygon <- function(data) {
   medians <- t(simplify2array(lapply(splData[["data"]], get_median)))
   plot_target()
   
-  colors <- gray.colors(nrow(medians), start = 0, end = 1)
+  colors <- rev(gray.colors(nrow(medians), start = 0, end = 1))
   
   for(i in head(seq_len(nrow(medians)), -1)){
     segments(
       medians[i,1], medians[i,2],
       medians[i+1,1], medians[i+1,2],
-      col = colors[i], lwd = 2
+      col = colors[i], lwd = 3
     )
   }
+  
+  datesRange <- range(unique(data[["Date"]]))
+  datesRange <- paste(datesRange, collapse = " - ")
+  title(paste("Daily median shots - ", datesRange))
 }

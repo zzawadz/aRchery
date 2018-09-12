@@ -5,10 +5,12 @@
 \title{Plot total scores by day}
 \usage{
 plot_daily_total_points(data, addRollMean = TRUE, addRollMax = TRUE,
-  n = 7)
+  n = 7, ...)
 }
 \arguments{
 \item{data}{data.frame containing archery data.}
+
+\item{...}{other parameters passed to \code{geom_line}.}
 }
 \description{
 Plot total scores by day
