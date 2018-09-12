@@ -42,7 +42,31 @@ plot_daily_total_points <- function(
 
 
 plot_medians_polygon <- function(data) {
-  aRchery:::  
-  data
-  DepthProc::depthMedian()
+  
+  splData <- aRchery::split_by(data, "Date")
+  x <- splData[["data"]][[1]]
+  
+  get_median <- function(x) {
+    x[, "y"] <- -x[, "y"]
+    
+    median <-
+      DepthProc::depthMedian(
+        x[, c("x", "y")], 
+        depth_params = list(method = "Tukey", exact = TRUE)
+      )
+    median
+  }
+  
+  medians <- t(simplify2array(lapply(splData[["data"]], get_median)))
+  plot_target()
+  
+  colors <- gray.colors(nrow(medians), start = 0, end = 1)
+  
+  for(i in head(seq_len(nrow(medians)), -1)){
+    segments(
+      medians[i,1], medians[i,2],
+      medians[i+1,1], medians[i+1,2],
+      col = colors[i], lwd = 2
+    )
+  }
 }
