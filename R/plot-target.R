@@ -92,6 +92,7 @@ add_shots <- function(data, colors = NULL) {
   y <- -data[["y"]]
   rad <- sqrt(x^2 + y^2)
   
+  target <- get_target_type(data)
   scr <- scale_rads(target)
   
   if(is.null(colors)) {
