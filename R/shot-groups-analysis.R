@@ -14,16 +14,8 @@
 #' 
 fnc_by_n_shots <- function(data, n = 12) {
 
-  dt <- data %>% 
-    seplyr::group_by_se("Date") %>% 
-    seplyr::arrange_se(c("Date", "End"))
   
-  add_idx <- function(x) {
-    nn <- ceiling(length(x) / n)
-    sort(rep(seq_len(nn), n))
-  }
-  
-  dt <- dt %>% dplyr::mutate(Groups = add_idx(Date))
+  dt <- add_group_by_n(data, n)
   
   dt <- dt %>% 
     seplyr::group_by_se(c("Date", "Groups")) %>%

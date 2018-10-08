@@ -82,13 +82,21 @@ plot_target_with_shots <- function(data) {
   target <- get_target_type(data)
   
   plot_target(target)
+  add_shots(data)
+}
+
+
+add_shots <- function(data, colors = NULL) {
   
   x <- data[["x"]]
   y <- -data[["y"]]
   rad <- sqrt(x^2 + y^2)
   
   scr <- scale_rads(target)
-  colors <- vapply(rad, function(x) sum(x > scr), 0) + 1
-  points(x = x, y = y, pch = 19, col = colors)
   
+  if(is.null(colors)) {
+    colors <- vapply(rad, function(x) sum(x > scr), 0) + 1
+  }
+  
+  points(x = x, y = y, pch = 19, col = colors)
 }

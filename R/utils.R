@@ -57,3 +57,20 @@ select_by_n_days_inner <- function(
   finalDays <- sort(unique(finalDays))
   finalDays
 }
+
+
+#####
+add_group_by_n <- function(data, n = 12) {
+  
+  dt <- data %>% 
+    seplyr::group_by_se("Date") %>% 
+    seplyr::arrange_se(c("Date", "End"))
+  
+  add_idx <- function(x) {
+    nn <- ceiling(length(x) / n)
+    sort(rep(seq_len(nn), n))
+  }
+  
+  dt <- dt %>% dplyr::mutate(Groups = add_idx(Date))
+  dt
+}
