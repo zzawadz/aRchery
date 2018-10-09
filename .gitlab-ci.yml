@@ -1,0 +1,10 @@
+stages:
+  - build
+
+make package:
+  stage: build
+  tags:
+    - deploy
+  script:
+    - R -e 'devtools::install()'
+    - sudo /bin/systemctl restart archery_app.service
