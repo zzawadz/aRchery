@@ -8,4 +8,5 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr, readr, seplyr, plotrix, DepthProc, TTR, reshape2, magrittr, lubridate
+Suggests: shinydashboard
 RoxygenNote: 6.1.0

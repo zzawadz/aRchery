@@ -1,11 +1,19 @@
 library(shiny)
 library(aRchery)
+library(dplyr)
 
 shinyServer(function(input, output, session) {
 
+    
+    dataAll <- reactive({
+        req(input$FilePath)
+        data <- read_archery_files(input$FilePath$datapath)
+        data
+    })
+    
     observe({
-        
-        dates <- unique(dataAll[["Date"]])
+        req(dataAll())
+        dates <- unique(dataAll()[["Date"]])
         
         updateSelectInput(
             session = session, inputId = "Date",
@@ -27,7 +35,7 @@ shinyServer(function(input, output, session) {
     data <- reactive({
         req(input$Date, input$GroupSize)
         ar_make_mean_grouped_data(
-            data = dataAll %>% filter(Date == input$Date),
+            data = dataAll() %>% filter(Date == input$Date),
             as.numeric(input$GroupSize))
     })
     
@@ -38,7 +46,7 @@ shinyServer(function(input, output, session) {
         dt <- data()[["summaries"]] %>% head(i)
         
         plot_target_with_shots(dt)
-        add_shots(data()[["rawPoints"]][[i]], colors = "gray")
+        ar_add_shots(data()[["rawPoints"]][[i]], colors = "gray")
     })
 
 })

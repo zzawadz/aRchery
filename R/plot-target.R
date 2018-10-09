@@ -82,11 +82,19 @@ plot_target_with_shots <- function(data) {
   target <- get_target_type(data)
   
   plot_target(target)
-  add_shots(data)
+  ar_add_shots(data)
 }
 
 
-add_shots <- function(data, colors = NULL) {
+#' Add shots to the existing target plot.
+#'
+#' @param data archery data with shots to add.
+#' @param colors vector of colors for new shots.
+#'
+#' @return
+#' @export
+#'
+ar_add_shots <- function(data, colors = NULL) {
   
   x <- data[["x"]]
   y <- -data[["y"]]

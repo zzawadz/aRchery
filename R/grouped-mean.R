@@ -1,3 +1,11 @@
+#' Create list with data grouped by N-shots for a given day
+#'
+#' @param data archery data for only one day 
+#' @param n size of the group
+#'
+#' @return
+#' @export
+#' 
 ar_make_mean_grouped_data <- function(data, n = 6) {
   
   if(length(unique(data[["Date"]])) != 1) {

@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(magrittr)
 
 MENU <- sidebarMenu(
     menuItem("Intro", tabName = "Intro"),
