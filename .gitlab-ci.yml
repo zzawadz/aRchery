@@ -1,7 +1,7 @@
 stages:
   - build
 
-make package:
+deploy:
   stage: build
   tags:
     - deploy
