@@ -19,7 +19,7 @@ BODY <- tabItems(
             selectInput("Group size", inputId = "GroupSize", choices = NULL, selected = NULL),
             sliderInput("Slider", label = "Slider", min = 0, max = 12, value = 1),
             hr(),
-            sliderInput("Point size", inputId = "PointSize", min = 1, max = 6, value = 2.5, step = 0.1)
+            sliderInput("Point size", inputId = "PointSize", min = 1, max = 6, value = 2, step = 0.1)
         ),
         shinydashboard::box(title = "Menu", width = 8, height = "75vh",
             plotOutput("Plot", width = "100%", height = "70vh")
