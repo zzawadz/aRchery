@@ -47,8 +47,8 @@ shinyServer(function(input, output, session) {
         
         dt <- data()[["summaries"]] %>% head(i)
         
-        plot_target_with_shots(dt)
-        ar_add_shots(data()[["rawPoints"]][[i]], colors = "gray")
+        plot_target_with_shots(dt, cex = input$PointSize)
+        ar_add_shots(data()[["rawPoints"]][[i]], colors = "gray", cex = input$PointSize)
     })
 
 })

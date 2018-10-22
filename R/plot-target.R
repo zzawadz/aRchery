@@ -77,12 +77,12 @@ plot_target <- function(target = ARCHERY_TARGETS$WA5_RING_40, setPars = FALSE) {
 #' title(dates[2])
 #' par(oldPar) 
 #' 
-plot_target_with_shots <- function(data) {
+plot_target_with_shots <- function(data, ...) {
   
   target <- get_target_type(data)
   
   plot_target(target)
-  ar_add_shots(data)
+  ar_add_shots(data, ...)
 }
 
 
@@ -94,7 +94,7 @@ plot_target_with_shots <- function(data) {
 #' @return
 #' @export
 #'
-ar_add_shots <- function(data, colors = NULL) {
+ar_add_shots <- function(data, colors = NULL, ...) {
   
   x <- data[["x"]]
   y <- -data[["y"]]
@@ -106,6 +106,5 @@ ar_add_shots <- function(data, colors = NULL) {
   if(is.null(colors)) {
     colors <- vapply(rad, function(x) sum(x > scr), 0) + 1
   }
-  
-  points(x = x, y = y, pch = 19, col = colors)
+  points(x = x, y = y, pch = 19, col = colors, ...)
 }
