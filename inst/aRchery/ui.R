@@ -4,7 +4,8 @@ library(magrittr)
 
 MENU <- sidebarMenu(
     menuItem("Intro", tabName = "Intro"),
-    menuItem("Grouping Mean", tabName = "GroupingMean")
+    menuItem("Grouping Mean", tabName = "GroupingMean"),
+    archeryDateModuleUI("SelectedDate")
 )
 
 BODY <- tabItems(

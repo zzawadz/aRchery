@@ -1,3 +1,5 @@
+#' @rdname archeryDataServer
+#' @export
 archeryDataUI <- function(id) {
   ns <- shiny::NS(id)
   
@@ -15,6 +17,15 @@ archeryDataUI <- function(id) {
   
 }
 
+#' Module for loading archery data
+#'
+#' @param input 
+#' @param output 
+#' @param session 
+#'
+#' @rdname archeryDataServer
+#' @export
+#'
 archeryDataServer <- function(input, output, session) {
   
   dataContainer <- reactiveValues(data = NULL)
