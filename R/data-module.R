@@ -12,6 +12,10 @@ archeryDataUI <- function(id) {
     shinydashboard::box(
       width = 6,
       verbatimTextOutput(ns("DataInfo"))
+    ),
+    shinydashboard::box(
+      width = 12,
+      shiny::plotOutput(ns("CalendarPlot"))
     )
   )
   
@@ -45,6 +49,24 @@ archeryDataServer <- function(input, output, session) {
     dataContainer$data
   })
   
+  output$DataInfo <- renderPrint({
+    cat(paste("Days:", length(unique(dataAll()$Date))), "\n")
+    cat(paste("Interval:", paste(range(dataAll()[["Date"]]), collapse = " - ")), "\n")
+    cat(paste("Shots No:", nrow(dataAll())), "\n")
+  })
+  
+  output$CalendarPlot <- renderPlot({
+    req(dataAll())
+    Sys.setlocale(category = "LC_TIME", locale = "en_US.UTF-8")
+    x <- dataAll() %>% 
+      group_by(Date) %>% 
+      summarise(Score = sum(RawScore))
+    openair::calendarPlot(
+      x %>% rename(date = Date),
+      pollutant = "Score",
+      par.settings = list(fontsize=list(text=25))
+    )
+  })
   
   return(dataAll)
 }
