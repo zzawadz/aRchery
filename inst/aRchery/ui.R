@@ -6,6 +6,7 @@ MENU <- sidebarMenu(
     menuItem("Intro", tabName = "Intro"),
     menuItem("Grouping Mean", tabName = "GroupingMean"),
     menuItem("Compare targets", tabName = "CompareTargets"),
+    menuItem("Miscellaneous plots", tabName = "MiscPlots"),
     archeryDateModuleUI("SelectedDate")
 )
 
@@ -25,7 +26,8 @@ BODY <- tabItems(
             plotOutput("Plot", width = "100%", height = "70vh")
         )
     ),
-    tabItem("CompareTargets", archeryCompareTargetsModuleUI("TargetCompare"))
+    tabItem("CompareTargets", archeryCompareTargetsModuleUI("TargetCompare")),
+    tabItem("MiscPlots", archeryMiscellaneousPlotsUI("MiscPlots"))
 )
 
 

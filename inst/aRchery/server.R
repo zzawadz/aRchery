@@ -12,6 +12,8 @@ shinyServer(function(input, output, session) {
     
     # output modules
     callModule(archeryCompareTargetsModule, id = "TargetCompare", mainData = dataAll, dates = selectedDates)
+    callModule(archeryMiscellaneousPlotsServer, id = "MiscPlots", mainData = dataAll, selectedDates = selectedDates)
+    
     
     observe({
         req(dataAll())

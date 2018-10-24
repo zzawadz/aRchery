@@ -4,7 +4,7 @@
 \alias{ar_add_shots}
 \title{Add shots to the existing target plot.}
 \usage{
-ar_add_shots(data, colors = NULL)
+ar_add_shots(data, colors = NULL, ...)
 }
 \arguments{
 \item{data}{archery data with shots to add.}

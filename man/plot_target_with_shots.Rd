@@ -4,7 +4,7 @@
 \alias{plot_target_with_shots}
 \title{Plot target with shots}
 \usage{
-plot_target_with_shots(data)
+plot_target_with_shots(data, ...)
 }
 \arguments{
 \item{data}{archery data}
