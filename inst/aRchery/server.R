@@ -6,22 +6,7 @@ options(shiny.maxRequestSize=1024^3)
 
 shinyServer(function(input, output, session) {
 
-    dataContainer <- reactiveValues(data = NULL)
-    
-    observeEvent(input$DefaultData, {
-        dataContainer$data <- archeryData
-    })
-    
-    observeEvent(input$FilePath, {
-        req(input$FilePath)
-        data <- read_archery_files(input$FilePath$datapath)
-        dataContainer$data <- data
-    })
-    
-    dataAll <- reactive({
-        req(dataContainer$data)
-        dataContainer$data
-    })
+    dataAll <- callModule(archeryDataServer, id = "Data")
     
     observe({
         req(dataAll())
