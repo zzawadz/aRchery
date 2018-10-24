@@ -10,7 +10,8 @@ MENU <- sidebarMenu(
 BODY <- tabItems(
     tabItem(tabName = "Intro",
         shinydashboard::box(width = 6,
-            fileInput("FilePath", label = "Upload file", multiple = TRUE)
+            fileInput("FilePath", label = "Upload file", multiple = TRUE),
+            actionButton("DefaultData", label = "Default data", width = "100%")
         )
     ),
     tabItem(tabName = "GroupingMean",
