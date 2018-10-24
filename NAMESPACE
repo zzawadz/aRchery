@@ -3,6 +3,8 @@
 export(ARCHERY_TARGETS)
 export(ar_add_shots)
 export(ar_make_mean_grouped_data)
+export(archeryCompareTargetsModule)
+export(archeryCompareTargetsModuleUI)
 export(archeryDataServer)
 export(archeryDataUI)
 export(archeryDateModuleServer)

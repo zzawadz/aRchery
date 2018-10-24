@@ -6,8 +6,12 @@ options(shiny.maxRequestSize=1024^3)
 
 shinyServer(function(input, output, session) {
 
+    # input modules
     dataAll <- callModule(archeryDataServer, id = "Data")
     selectedDates <- callModule(archeryDateModuleServer, id = "SelectedDate", mainData = dataAll)
+    
+    # output modules
+    callModule(archeryCompareTargetsModule, id = "TargetCompare", mainData = dataAll, dates = selectedDates)
     
     observe({
         req(dataAll())

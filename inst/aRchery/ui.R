@@ -5,6 +5,7 @@ library(magrittr)
 MENU <- sidebarMenu(
     menuItem("Intro", tabName = "Intro"),
     menuItem("Grouping Mean", tabName = "GroupingMean"),
+    menuItem("Compare targets", tabName = "CompareTargets"),
     archeryDateModuleUI("SelectedDate")
 )
 
@@ -23,7 +24,8 @@ BODY <- tabItems(
         shinydashboard::box(title = "Menu", width = 8, height = "75vh",
             plotOutput("Plot", width = "100%", height = "70vh")
         )
-    )
+    ),
+    tabItem("CompareTargets", archeryCompareTargetsModuleUI("TargetCompare"))
 )
 
 
